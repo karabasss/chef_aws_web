@@ -1,6 +1,6 @@
 # chef_aws_web
 
 
-##Prerequisites:
+## Prerequisites:
 
  * Linux machine connected to aws
