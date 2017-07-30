@@ -23,4 +23,3 @@ sudo pip install ansible
 
 ansible-playbook aws_instance_up.yml
 
- 

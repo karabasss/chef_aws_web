@@ -1,0 +1,45 @@
+--- # Create aws instance
+
+  - name: Include aws_keys vars
+    include_vars: aws_keys.yml
+
+  - name: Add env vars for accessing AWS
+    shell: export AWS_ACCESS_KEY_ID={{ aws_key_id }} && export AWS_SECRET_ACCESS_KEY={{ aws_key }}
+
+  - name: Create test aws instance
+    ec2:
+      key_name: "{{ aws_key_name }}"
+      group: "{{ aws_group }}"
+      instance_type: "{{ aws_instance_type }}"
+      image: "{{ aws_image }}"
+      region: "{{ aws_region }}"
+      assign_public_ip: yes
+      vpc_subnet_id: "{{ aws_vpc_subnet_id }}"
+      instance_tags:
+        Name: "{{ aws_name }}"
+      volumes:
+        - device_name: /dev/sda1
+          volume_type: gp2
+          volume_size: 8
+      wait: true
+      state: present
+    register: ec2
+
+
+
+  - name: Force add instance to invent file
+    lineinfile:
+      dest: invent
+      line: "[aws_deploy]\n{{ item.public_ip }}"
+    with_items: '{{ec2.instances}}'
+
+  - name: Refresh the ec2.py cache
+    shell: ./ec2.py --refresh-cache
+
+  - name: Refresh inventory
+    meta: refresh_inventory
+
+  - name: Wait for the instances to boot by checking the ssh port
+    wait_for: host={{ item.public_ip }} port=22 delay=60 timeout=320 state=started
+    with_items: '{{ec2.instances}}'
+

@@ -3,4 +3,5 @@
 
 ## Prerequisites:
 
- * Linux machine connected to aws
+ * Linux machine
+ * sudo rights without passwd or root rights

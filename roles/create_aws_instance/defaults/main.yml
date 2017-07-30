@@ -1,0 +1,9 @@
+--- ## Default vars for aws instance
+
+aws_instance_type: t2.micro
+aws_image: ami-1c45e273  ## ubuntu 16
+aws_region: eu-west-1
+aws_key_name: triptop-testenv    ## pem key
+aws_group: default               ## security group
+aws_name: chef_server   ## nameTag, use only underscores in name (ec2.py and ansible demand)
+aws_vpc_subnet_id: default
