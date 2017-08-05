@@ -1,15 +1,15 @@
 --- # Create aws instance
 
   - name: Check if aws_key_name varible is set (my is triptop-testenv)
-    fail: msg="Please enter 'aws_key_name' variable in extra-vars (your pem key name, without .pem)"
+    fail: msg="Please enter 'aws_key_name' variable in prompt (your pem key name, without .pem)"
     when: aws_key_name is not defined.
 
   - name: Check if aws_key_id varible is set
-    fail: msg="Please enter 'aws_key_id' variable in extra-vars (your AWS_ACCESS_KEY_ID)"
+    fail: msg="Please enter 'aws_key_id' variable in prompt (your AWS_ACCESS_KEY_ID)"
     when: aws_key_id is not defined.
 
   - name: Check if aws_key varible is set
-    fail: msg="Please enter 'aws_key' variable in extra-vars (your AWS_SECRET_ACCESS_KEY)"
+    fail: msg="Please enter 'aws_key' variable in prompt (your AWS_SECRET_ACCESS_KEY)"
     when: aws_key is not defined.
 
 ## Or we can do it in this way (+ ansible-vault encrypted):
@@ -40,16 +40,11 @@
       state: present
     register: ec2
 
-
-
   - name: Force add instance to invent file
     lineinfile:
       dest: invent
       line: "[aws_deploy]\n{{ item.public_ip }}"
     with_items: '{{ec2.instances}}'
-
-  - name: Refresh the ec2.py cache
-    shell: ./ec2.py --refresh-cache
 
   - name: Refresh inventory
     meta: refresh_inventory

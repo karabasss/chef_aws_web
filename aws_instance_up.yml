@@ -4,6 +4,28 @@
   become: true
   #gather_facts: no
 
+  vars_prompt:
+
+    - name: "aws_key_name"
+      prompt: "Please enter 'aws_key_name' variable in prompt (your pem key name, without .pem)"
+      default: "triptop-testenv"
+
+    - name: "aws_key_id"
+      prompt: "Please enter 'aws_key_id' variable in prompt (your AWS_ACCESS_KEY_ID)"
+ 
+    - name: "aws_key"
+      prompt: "Please enter 'aws_key' variable in prompt (your AWS_SECRET_ACCESS_KEY)"
+
+    - name: "aws_group"
+      prompt: "Please enter 'aws_group' variable in prompt (your AWS security group)"
+      default: "default"
+
+    - name: "aws_region"
+      prompt: "Please enter 'aws_region' variable in prompt (your AWS region)"
+      default: "eu-west-1"
+
+
+
   roles:
 
     - create_aws_instance
