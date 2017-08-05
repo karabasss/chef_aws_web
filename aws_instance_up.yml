@@ -20,6 +20,10 @@
       prompt: "Please enter 'aws_group' variable in prompt (your AWS security group)"
       default: "default"
 
+    - name: "aws_vpc_subnet_id"
+      prompt: "Please enter 'aws_vpc_subnet_id' variable in prompt (your AWS subnet)"
+      default: "subnet-00fcbe77"
+
     - name: "aws_region"
       prompt: "Please enter 'aws_region' variable in prompt (your AWS region)"
       default: "eu-west-1"
