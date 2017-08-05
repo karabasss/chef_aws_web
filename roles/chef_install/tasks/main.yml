@@ -1,0 +1,28 @@
+---
+
+  - name: Install some packets just for comfort
+    apt: name={{ item }} state=latest update_cache=yes
+    with_items:
+      - mc
+      - vim
+      - curl
+      - wget
+
+  - name: Download chef
+    get_url: 
+      url: https://packages.chef.io/files/stable/chef-server/12.15.8/ubuntu/16.04/chef-server-core_12.15.8-1_amd64.deb
+      dest: /opt/chef-server-core_12.15.8-1_amd64.deb
+      checksum: sha256:4351cc42f344292bb89b8d252b66364e79d0eb271967ef9f5debcbf3a5a6faae
+
+  - name: Install chef deb package
+    apt: deb=/opt/chef-server-core_12.15.8-1_amd64.deb
+
+  - name: Chef-reconfigure (chef-server-ctl reconfigure)
+    shell: chef-server-ctl reconfigure
+
+  - name: Create user "chef", password "chef", pem file path = /root/key.pem
+    shell: chef-server-ctl user-create chef Test Chef chef@grabcad.ee 'chef' --filename /root/key.pem
+
+  - name: Create organization "Grabcad", validator key path = /root/grabcad-validator.pem
+    shell: chef-server-ctl org-create grabcad 'GrabCad' --association_user chef --filename /root/grabcad-validator.pem
+

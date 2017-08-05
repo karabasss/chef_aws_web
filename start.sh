@@ -4,10 +4,12 @@ YUM_CMD=$(which yum)
 APT_CMD=$(which apt)
 
 if [[ ! -z $YUM_CMD ]]; then
+     echo
      echo "Installing pip and libs...."
      sudo yum update -y >/dev/null
      sudo yum install -y python-pip gcc libffi-devel python-devel openssl-devel >/dev/null
 elif [[ ! -z $APT_CMD ]]; then
+     echo
      echo "Installing pip and libs...."
      sudo apt update -y >/dev/null
      sudo apt install -y python-pip build-essential libssl-dev libffi-dev python-dev >/dev/null
@@ -16,14 +18,25 @@ else
     exit 1;
 fi
 
+echo
 echo "Installing pip modules and ansible...."
-sudo pip install --upgrade pip >/dev/null
-sudo pip install --upgrade setuptools >/dev/null
-sudo pip install cryptography >/dev/null
-sudo pip install markupsafe >/dev/null
-sudo pip install boto >/dev/null
+sudo pip install -U pip >/dev/null
+sudo pip install -U setuptools boto >/dev/null
+sudo pip install cryptography markupsafe >/dev/null
 sudo pip install ansible >/dev/null
 
+echo
 echo "Runinng ansible-playbook aws_instance_up..."
 ansible-playbook aws_instance_up.yml
+
+if [ $? -eq 0 ]; then
+    echo
+    echo "Runinng ansible-playbook which will install chef-server on the new instance..."
+else
+    echo "Something went wrong, can't continue :/"
+    exit 1
+fi
+
+ansible-playbook -i ec2.py -u ubuntu -l tag_Name_chef_server aws_chef_server_install.yml 
+
 

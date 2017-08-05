@@ -1,0 +1,8 @@
+--- ### Installs chef
+
+- hosts: all
+  become: yes
+
+  roles:
+    - chef_install
+
