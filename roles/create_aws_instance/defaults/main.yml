@@ -1,6 +1,6 @@
 --- ## Default vars for aws instance
 
-aws_instance_type: t2.micro
+aws_instance_type: t2.small # minimum
 aws_image: ami-785db401  ## ubuntu 16
 aws_region: eu-west-1
 aws_key_name: triptop-testenv    ## pem key
