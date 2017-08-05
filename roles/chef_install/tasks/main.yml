@@ -21,8 +21,8 @@
   - name: Install chef-manage
     shell: chef-server-ctl install chef-manage
 
-  - name: chef-server-ctl reconfigure chef-manage-ctl reconfigure
-    shell: chef-server-ctl reconfigure && chef-manage-ctl reconfigure
+  - name: chef-server-ctl reconfigure && chef-manage-ctl reconfigure
+    shell: chef-server-ctl reconfigure --accept-license && chef-manage-ctl reconfigure --accept-license
 
   - name: Create user "chef", password "chefpass", pem file path = /root/key.pem
     shell: chef-server-ctl user-create chef Test Chef chef@grabcad.ee 'chefpass' --filename /root/key.pem
