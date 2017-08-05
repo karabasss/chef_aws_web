@@ -1,4 +1,2 @@
 [local]
 localhost ansible_connection=local
-[aws_deploy]
-34.252.66.198
