@@ -39,7 +39,7 @@
     shell: mkdir /opt/grabcad-chef-repo/.chef && echo '.chef' >> /opt/grabcad-chef-repo/.gitignore
 
   - name: Copy keys and knife.rb to repo
-    copy: src=/opt/{{ item }} dest=/opt/grabcad-chef-repo/.chef/
+    copy: src=/tmp/{{ item }} dest=/opt/grabcad-chef-repo/.chef/
     with_items:
       - key.pem
       - grabcad-validator.pem

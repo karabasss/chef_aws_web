@@ -34,7 +34,7 @@
     template: src=knife.rb.j2 dest=/root/knife.rb
 
   - name: Copy keys to local machine
-    fetch: src=/root/{{ item }} dest=/opt/{{ item }}
+    fetch: src=/root/{{ item }} dest=/tmp/{{ item }}
     with_items:
       - key.pem
       - grabcad-validator.pem
