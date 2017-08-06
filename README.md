@@ -3,5 +3,6 @@
 
 ## Prerequisites:
 
- * Linux machine
- * sudo rights without passwd or root rights
+ * Linux machine (Ubuntu 16/14, Debian 8, RH7/Centos7)
+ * sudo rights without passwd checking or root rights
+

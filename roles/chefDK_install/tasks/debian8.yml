@@ -1,0 +1,10 @@
+---
+
+  - name: Download chefDK (Debian8)
+    get_url: 
+      url: https://packages.chef.io/files/stable/chefdk/2.0.28/debian/8/chefdk_2.0.28-1_amd64.deb
+      dest: /opt/chefdk_2.0.28-1_amd64.deb
+      checksum: sha256:a6f16dff2027e2963bedb5caa2e6681ef88b81a492dd86433970bf7b8c902429
+      timeout: 30
+
+  - 

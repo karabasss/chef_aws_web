@@ -1,0 +1,10 @@
+---
+
+  - name: Download chefDK (rh7/centos7)
+    get_url:
+      url: https://packages.chef.io/files/stable/chefdk/2.0.28/el/7/chefdk-2.0.28-1.el7.x86_64.rpm
+      dest: /opt/chefdk-2.0.28-1.el7.x86_64.rpm
+      checksum: sha256:8667528e1f4ca65d43e48782bda1650a4a54d672b86a7926e149f4b54a644a6b
+      timeout: 30
+
+

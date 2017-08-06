@@ -1,0 +1,11 @@
+--- 
+
+  - hosts: localhost
+    become: true 
+    gather_facts: yes
+   
+
+    roles:
+    
+    - chefDK_install 
+
