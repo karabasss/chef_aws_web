@@ -7,4 +7,7 @@
       checksum: sha256:4fa0daa3f26545a3b4ad104370e210df0d3d909298b2df85a613f564e0780730
       timeout: 30
 
-  -
+  - name: Install chefDK deb package (Ubuntu14)
+    apt: deb=/opt/chefdk_2.0.28-1_amd64.deb
+
+

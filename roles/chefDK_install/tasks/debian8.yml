@@ -7,4 +7,7 @@
       checksum: sha256:a6f16dff2027e2963bedb5caa2e6681ef88b81a492dd86433970bf7b8c902429
       timeout: 30
 
-  - 
+  - name: Install chefDK deb package (Debian8)
+    apt: deb=/opt/chefdk_2.0.28-1_amd64.deb
+
+ 

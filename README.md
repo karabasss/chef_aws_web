@@ -1,5 +1,12 @@
 # chef_aws_web
 
+# To start, run:
+
+```sh
+$ git clone https://github.com/karabasss/chef_aws_web.git
+$ cd chef_aws_web
+$ ./start.sh
+```
 
 ## Prerequisites:
 

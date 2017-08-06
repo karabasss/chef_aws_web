@@ -30,3 +30,13 @@
   - name: Create organization "Grabcad", validator key path = /root/grabcad-validator.pem
     shell: chef-server-ctl org-create grabcad 'GrabCad' --association_user chef --filename /root/grabcad-validator.pem
 
+  - name: Generate knife.rb
+    template: src=knife.rb.j2 dest=/root/knife.rb
+
+  - name: Copy keys to local machine
+    fetch: src=/root/{{ item }} dest=/opt/{{ item }}
+    with_items:
+      - key.pem
+      - grabcad-validator.pem
+      - knife.rb
+

@@ -7,14 +7,14 @@ APT_CMD=$(which apt)
 
 if [[ ! -z $YUM_CMD ]]; then
      echo
-     echo "Installing pip and libs and check ruby...."
+     echo "Installing pip and libs ..."
      sudo yum update -y >/dev/null
-     sudo yum install -y python-pip gcc libffi-devel python-devel openssl-devel ruby >/dev/null
+     sudo yum install -y python-pip gcc libffi-devel python-devel openssl-devel >/dev/null
 elif [[ ! -z $APT_CMD ]]; then
      echo
-     echo "Installing pip and libs and check ruby...."
+     echo "Installing pip and libs..."
      sudo apt-get update -y >/dev/null
-     sudo apt-get install -y python-pip build-essential libssl-dev libffi-dev python-dev ruby >/dev/null
+     sudo apt-get install -y python-pip build-essential libssl-dev libffi-dev python-dev >/dev/null
 else
     echo "error, script supports only yum and apt, and you should run it from bash shell"
     exit 1;

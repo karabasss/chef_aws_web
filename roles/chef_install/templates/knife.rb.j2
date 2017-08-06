@@ -1,0 +1,14 @@
+current_dir = File.dirname(__FILE__)
+log_level                :info
+log_location             STDOUT
+node_name                'Grabcad'
+client_key               "#{current_dir}/key.pem"
+validation_client_name   'chef'
+validation_key           "#{current_dir}/grabcad-validator.pem"
+chef_server_url          'https://{{ ansible_host }}/organizations/GrabCad'
+cache_type               'BasicFile'
+cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
+cookbook_path            ["#{current_dir}/../cookbooks"]
+ssl_verify_mode          :verify_none
+
+knife[:editor]="vim"

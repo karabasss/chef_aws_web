@@ -1,4 +1,4 @@
----
+--- # Installing DK
 
   - name: Install some packages (apt)
     apt: name={{ item }} state=present update_cache=yes
@@ -29,5 +29,24 @@
   - name: Include Ubuntu16 tasks
     include: ubuntu16.yml
     when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '16'
+
+#### Configuring DK
+
+  - name: Chef generate app grabcad-chef-repo in /opt
+    shell: cd /opt && chef generate app grabcad-chef-repo
+
+  - name: Create .chef dir
+    shell: mkdir /opt/grabcad-chef-repo/.chef && echo '.chef' >> /opt/grabcad-chef-repo/.gitignore
+
+  - name: Copy keys and knife.rb to repo
+    copy: src=/opt/{{ item }} dest=/opt/grabcad-chef-repo/.chef/
+    with_items:
+      - key.pem
+      - grabcad-validator.pem
+      - knife.rb
+
+  - name: 
+    shell: cd /opt/grabcad-chef-repo && knife ssl fetch
+
 
 
