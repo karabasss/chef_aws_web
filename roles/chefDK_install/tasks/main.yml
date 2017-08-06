@@ -36,7 +36,9 @@
     shell: cd /opt && chef generate app grabcad-chef-repo
 
   - name: Create .chef dir
-    shell: mkdir /opt/grabcad-chef-repo/.chef && echo '.chef' >> /opt/grabcad-chef-repo/.gitignore
+    file: path=/opt/grabcad-chef-repo/.chef state=directory recurse=yes
+
+  - shell: echo '.chef' >> /opt/grabcad-chef-repo/.gitignore
 
   - name: Copy keys and knife.rb to repo
     copy: src=/tmp/{{ item }} dest=/opt/grabcad-chef-repo/.chef/
@@ -45,7 +47,7 @@
       - grabcad-validator.pem
       - knife.rb
 
-  - name: 
+  - name: knife ssl fetch
     shell: cd /opt/grabcad-chef-repo && knife ssl fetch
 
 
