@@ -45,6 +45,8 @@ fi
 ansible-playbook -i ec2.py -u ubuntu -l tag_Name_chef_server aws_chef_server_install.yml 
 
 # Localhost install (chef DK)
+echo
+echo "Runinng ansible-playbook which will install chefdk on localhost"
 ansible-playbook workstation_chef_DK.yml
 ######
 
