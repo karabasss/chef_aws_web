@@ -1,0 +1,16 @@
+---
+
+#  - name: Check if hostname varible is set
+#    fail: msg="Please enter 'new_hostname' variable in extra-vars"
+#    when: new_hostname is not defined 
+
+  - name: Change hostname 
+    hostname: name={{ ansible_host }}
+
+  - name: Change hostname in /etc/hosts
+    lineinfile: path=/etc/hosts state=present regexp='^127.0.1.1' line='127.0.1.1 {{ ansible_host }}'
+
+  - name: Print new hostname
+    debug: msg="New hostname is {{ ansible_hostname }}"
+
+
